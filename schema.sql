@@ -1,0 +1,5 @@
+CREATE TABLE todos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    task NVARCHAR(255) NOT NULL,
+    is_done BIT NOT NULL DEFAULT 0
+);
