@@ -5,26 +5,27 @@ This is a simple CRUD Todo application built with Java, running on Tomcat 8 with
 ---
 
 ## Project Structure
-src
-└── main
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── com
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── example
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── dao
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TodoDao.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── model
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Todo.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── servlet
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TodoServlet.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── util
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── DatabaseUtil.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── webapp
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── index.jsp
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── WEB-INF
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── web.xml
+```
 pom.xml
 schema.sql
-
+src
+└── main
+    ├── java
+    │   └── com
+    │       └── example
+    │           ├── dao
+    │           │   └── TodoDao.java
+    │           ├── model
+    │           │   └── Todo.java
+    │           ├── servlet
+    │           │   └── TodoServlet.java
+    │           └── util
+    │               └── DatabaseUtil.java
+    └── webapp
+        ├── index.jsp
+        └── WEB-INF
+            └── web.xml
+```
 ---
 
 ## Requirements
@@ -112,13 +113,13 @@ sudo cp /path/to/your/certificate.pfx /opt/tomcat8/certs/
 
 Edit `/opt/tomcat8/conf/server.xml` and add the following under the `<Service name="Catalina">` section:
 ```html
-`<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
            maxThreads="200" SSLEnabled="true" scheme="https" secure="true">
     <SSLHostConfig>
         <Certificate certificateKeystoreFile="/opt/tomcat8/certs/certificate.pfx"
                      certificateKeystorePassword="" />
     </SSLHostConfig>
-</Connector>` 
+</Connector>
 ```
 Then restart Tomcat:
 ```bash
