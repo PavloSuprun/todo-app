@@ -36,4 +36,24 @@ public class TodoDao {
             pstmt.executeUpdate();
         }
     }
+
+    public void deleteTodo(int id) throws SQLException {
+        String sql = "DELETE FROM todos WHERE id = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void toggleTodo(int id) throws SQLException {
+        String sql = "UPDATE todos SET is_done = CASE WHEN is_done = 1 THEN 0 ELSE 1 END WHERE id = ?";
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        }
+    }
 }

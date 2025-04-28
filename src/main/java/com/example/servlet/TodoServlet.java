@@ -12,30 +12,36 @@ import java.util.List;
 
 @WebServlet("/todos")
 public class TodoServlet extends HttpServlet {
-
-    private final TodoDao todoDao = new TodoDao();
+    private TodoDao todoDao = new TodoDao();
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Todo> todos = todoDao.getAllTodos();
-            req.setAttribute("todos", todos);
-            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            request.setAttribute("todos", todos);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Cannot retrieve todos", e);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String task = req.getParameter("task");
-        if (task != null && !task.trim().isEmpty()) {
-            try {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        try {
+            if (action == null) {
+                String task = request.getParameter("task");
                 todoDao.addTodo(task);
-            } catch (SQLException e) {
-                throw new ServletException("Cannot add todo", e);
+            } else if (action.equals("delete")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                todoDao.deleteTodo(id);
+            } else if (action.equals("toggle")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                todoDao.toggleTodo(id);
             }
+        } catch (SQLException e) {
+            throw new ServletException("Database operation failed", e);
         }
-        resp.sendRedirect("todos");
+        response.sendRedirect("todos");
     }
 }
