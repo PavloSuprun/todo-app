@@ -83,6 +83,8 @@ sqlcmd -S <your-server>.database.windows.net -U <your-username> -P <your-passwor
 ```
 > Replace `<your-server>`, `<your-username>`, `<your-password>`, `<your-database>` accordingly.
 
+At last replace the JDBC_URL parameter with actual connection string in todo-app/src/main/java/com/example/util/DatabaseUtil.java
+
 ---
 
 ## Build and Deploy the App
