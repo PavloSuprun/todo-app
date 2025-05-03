@@ -12,6 +12,9 @@ steps:
 - script: mvn -version
   displayName: 'Verify Maven'
 
+- script: echo JAVA_HOME=%JAVA_HOME%
+  displayName: 'Show JAVA_HOME'
+
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
