@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseUtil {
-    private static final String JDBC_URL = "connection_string";
-
+    private static final String JDBC_URL = System.getenv("SQLAZURECONNSTR_pavsuprdb");
+    System.out.println("Connection string: " + System.getenv("SQLAZURECONNSTR_pavsuprdb"));
     public static Connection getConnection() throws SQLException {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
